@@ -1,33 +1,3 @@
-# Demo pipeline 1
-
-pipeline {
-    agent any
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
-    }
-}
-
-----
-# Demo pipeline 2
-pipeline {
-    agent any
-    stages {
-        stage('Docker Run') {
-            agent any
-            steps {
-                sh 'docker run -d -p 80:80 rancher/hello-world'
-                }
-            }
-        }
-    }
-
-----
-# Demo Pipeline 3
-
 pipeline {
     agent any
     stages {
@@ -39,7 +9,7 @@ pipeline {
         stage('Docker Push') {
             agent any
             steps {
-                withCredentials([usernamePassword(credentialsId: '7055ac00-61ac-4a77-bdef-959700e0d566', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                withCredentials([usernamePassword(credentialsId: 'd8806db6-5900-4668-9615-b7e946919879', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                     sh "docker login docker.io -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
                     sh 'docker push snayak225/frontend:jen'
                 }

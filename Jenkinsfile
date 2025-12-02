@@ -9,7 +9,7 @@ pipeline {
         stage('Docker Push') {
             agent any
             steps {
-                withCredentials([usernamePassword(credentialsId: 'd8806db6-5900-4668-9615-b7e946919879', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                withCredentials([usernamePassword(credentialsId: 'dckr_pat_wXlTOwMQcdRnw2sAVn6P_sEfIXk', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
                     sh "docker login docker.io -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
                     sh 'docker push snayak225/frontend:jen'
                 }
